@@ -1,5 +1,5 @@
 {
-    "name": "calm/github-20160604",
+    "name": "chenlangren/github-20160604",
     "description": "An enhanced tree management module with tree node selection and manipulation using nested sets.",
     "keywords": [
         "bootstrap",
@@ -22,7 +22,7 @@
     },
     "autoload": {
         "psr-4": {
-            "calm\\tree\\": ""
+            "chenlangren\\tree\\": ""
         }
     },
     "extra": {
