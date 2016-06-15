@@ -34,11 +34,6 @@ use backend\models\User;
 ?>
 
 <?php
-/**
- * SECTION 1: Initialize node view params & setup helper methods.
- */
-?>
-<?php
 extract($params);
 //$isAdmin = ($isAdmin == true || $isAdmin === "true"); // admin mode flag
 $inputOpts = [];                                      // readonly/disabled input options for node
@@ -116,6 +111,9 @@ $renderContent = function ($part) use ($nodeAddlViews, $params, $form) {
 };
 
 $dataUsers = ArrayHelper::map(User::find()->asArray()->all(), 'id', 'name');
+
+$dataSample = Yii::$app->params['const']['plan']['sample'];
+$dataAccess = Yii::$app->params['const']['plan']['access'];
 ?>
 
 <?php
@@ -221,6 +219,15 @@ echo $renderContent(Module::VIEW_PART_1);
         </div>
     </div>
 
+     <div class="row">
+         <div class="col-sm-6">
+            <?= $form->field($node, 'sample')->dropDownList($dataSample, ['prompt'=>'--Choose it as a sample--']) ?>
+         </div>
+          <div class="col-sm-6">
+            <?= $form->field($node, 'access')->dropDownList($dataAccess, ['prompt'=>'--Choose a access--']) ?>
+         </div>
+     </div>
+
     <div class="row">
         <div class="col-sm-6">
             <label>Trip schedule</label>
@@ -241,18 +248,4 @@ echo $renderContent(Module::VIEW_PART_1);
         </div>
     </div>
 
-<?php
-/**
- * SECTION 7: Additional views part 2 - before admin zone.
- */
-?>
-<?= $renderContent(Module::VIEW_PART_2) ?>
-
 <?php ActiveForm::end() ?>
-
-<?php
-/**
- * SECTION 12: Additional views part 5 accessible by all users after admin zone.
- */
-?>
-<?= $renderContent(Module::VIEW_PART_5) ?>

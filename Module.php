@@ -94,10 +94,12 @@ class Module extends \kartik\base\Module
 //            'iconAttribute' => 'icon',
 //            'iconTypeAttribute' => 'icon_type',
             'schedule' => 'schedule',
-            'referId' => 'referId',
-            'creatorId'=> 'creatorId',
+            'referId' => 'refer_id',
+            'creatorId'=> 'creator_id',
             'created_time'=> 'created_time',
-            'updated_time'=> 'updated_time'
+            'updated_time'=> 'updated_time',
+            'access' => 'access',
+            'sample' => 'sample'
         ];
         $nodeActions = ArrayHelper::getValue($this->treeViewSettings, 'nodeActions', []);
         $nodeActions += [

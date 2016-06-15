@@ -30,6 +30,8 @@ trait TreeTrait
         'refer_id',
         'updated_time',
         'created_time',
+        'access',
+        'sample',
     ];
     /**
      * @var array the list of boolean value attributes
