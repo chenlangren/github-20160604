@@ -1135,6 +1135,32 @@ EOF;
     }
 
     /**
+     * computeNameLen
+    */
+    private function computeNameLen($str)
+    {
+        return (strlen($str) + mb_strlen($str,'UTF8')) / 2; 
+    }
+    
+    /**
+     * truncStr
+    */
+    const NAME_MAX_LENGTH = 24;
+    private function truncStr($str){
+        if($this->computeNameLen($str) > self::NAME_MAX_LENGTH)
+        {  
+            $cursor = 8;
+            $subStr;
+            while($this->computeNameLen($subStr = mb_substr($str,0,$cursor++,"UTF8")."..." ) < self::NAME_MAX_LENGTH) {
+                
+            }
+            return $subStr;
+            
+        }
+        return $str;
+    }
+
+    /**
      * Renders the markup for the tree hierarchy - uses a fast non-recursive mode of tree traversal.
      *
      * @return string
@@ -1161,7 +1187,7 @@ EOF;
             /** @noinspection PhpUndefinedVariableInspection */
             $nodeKey = $node->$keyAttribute;
             /** @noinspection PhpUndefinedVariableInspection */
-            $nodeName = $node->$nameAttribute;
+            $nodeName = $this->truncStr($node->$nameAttribute);
             /** @noinspection PhpUndefinedVariableInspection */
 //            $nodeIcon = $node->$iconAttribute;
             /** @noinspection PhpUndefinedVariableInspection */
